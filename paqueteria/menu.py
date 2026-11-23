@@ -32,6 +32,7 @@ class Menu:
             ("Ver envíos", self.ver_envios),
             ("Ver repartidores", self.ver_repartidores),
             ("Agregar repartidor", self.agregar_repartidor),
+            ("Recibir en almacén todos los registrados", self.recibir_todos),
         ]
 
     def ejecutar(self):
@@ -188,3 +189,9 @@ class Menu:
             input("Clave: "), input("Nombre: "), input("Vehículo (motocicleta, camioneta): "))
         self.__guardar()
         print(f"Agregado: {repartidor}")
+
+    def recibir_todos(self):
+        """Pasa al almacén los envíos registrados."""
+        recibidos = self.central.recibir_todos(self.__pedir_fecha())
+        self.__guardar()
+        print(f"{recibidos} envíos en el almacén")

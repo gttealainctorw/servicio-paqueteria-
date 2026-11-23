@@ -132,6 +132,15 @@ class Central:
         return envio
 
     @sincronizado
+    def recibir_todos(self, fecha):
+        """Pasa al almacén los registrados hasta esa fecha y regresa cuántos fueron."""
+        registrados = [e for e in self.__envios.values()
+                       if e.estado is Estado.REGISTRADO and e.fecha_registro <= fecha]
+        for envio in registrados:
+            envio.cambiar_estado(Estado.EN_ALMACEN, fecha)
+        return len(registrados)
+
+    @sincronizado
     def intento_fallido(self, guia, fecha):
         """Registra que no se pudo entregar el envío."""
         envio = self.buscar(guia)
