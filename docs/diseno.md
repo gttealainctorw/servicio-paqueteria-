@@ -17,7 +17,10 @@ Muestra por qué estados pasa un envío. Se eligió porque la mayoría de los re
 
 ### Diagrama de secuencia
 
-Por completar (Sebastian): jornada de reparto.
+![Diagrama de secuencia](uml/secuencia.png)
+
+Muestra la jornada de reparto: un hilo por repartidor y la revisión final. Se eligió porque es la parte donde
+varias cosas pasan al mismo tiempo.
 
 ## 2. Decisiones de diseño
 
@@ -28,8 +31,8 @@ Por completar (Sebastian): jornada de reparto.
 | Composición y agregación | `Envio` tiene su historial; `Repartidor` agrupa envíos | El historial no existe sin el envío; el envío sí existe sin repartidor |
 | Polimorfismo | `costo_base`, `seguro`, `validar`, `aplicar` | La central cotiza sin preguntar el tipo de envío |
 | Excepciones | `excepciones.py` | El menú atrapa un solo error base y muestra el motivo |
-| Archivos | `leer_csv`, `Almacen` | Cargar tarifas y conservar los datos; se escribe en un temporal para no dañar lo guardado |
-| Hilos | Candado de `Central`; jornada por completar (Sebastian) | Dos repartidores no modifican los datos al mismo tiempo |
+| Archivos | `leer_csv`, `Almacen`, `reporte.py` | Cargar tarifas, importar envíos, hacer reportes y conservar los datos; se escribe en un temporal para no dañar lo guardado |
+| Hilos | `Ruta` y candado de `Central` | Los repartidores trabajan al mismo tiempo sin dañar los datos |
 | Patrones de diseño | `FabricaEnvios` (Factory), `Servicio` (Strategy), `Envio.cotizar` (Template Method), `Central` (Facade) | Crear el tipo correcto, cambiar el precio según el servicio y que el menú use una sola clase |
 
 ### Detalles que decidimos
@@ -42,6 +45,12 @@ Por completar (Sebastian): jornada de reparto.
 - Un envío necesita repartidor para salir a ruta. Si la entrega falla, se queda sin repartidor.
 - Un envío que ya salió a ruta no se cancela aunque haya regresado al almacén.
 - Un cambio no puede tener una fecha anterior al último cambio del envío.
+- En la asignación automática van primero los express y después los más antiguos. Cada envío se le da al repartidor
+  con menos envíos que todavía lo pueda cargar.
+- Los ingresos del reporte son de los envíos registrados ese día, sin los cancelados ese mismo día.
+- En la jornada cada intento tiene 10 % de probabilidad de fallar y se hace un intento por envío al día.
+- Al importar, si el archivo no tiene las columnas completas no se registra ninguno.
+- Se agregó una opción para recibir en el almacén todos los envíos registrados.
 
 ## 3. Alternativas
 
@@ -52,11 +61,12 @@ Por completar (Sebastian): jornada de reparto.
 
 ## 4. Uso de IA
 
-- Qué se pidió: a partir del enunciado, el código base, los datos de ejemplo, los diagramas y esta documentación.
+- Qué se pidió: a partir del enunciado, el código base, los datos de ejemplo, y los diagramas.
 - Qué se usó: la primera versión de los módulos de `modelos`, `archivos`, `central`, `tarifario`, `fabrica`,
-  `menu` y `main`.
+  `menu` y `main`, y también de `importador`, `asignacion`, `reporte` y `jornada`.
 - Qué se corrigió: por completar por el equipo.
-- Cómo se verificó: se ejecutaron los casos del README, incluidos los rechazos y los archivos dañados.
+- Cómo se verificó: se ejecutaron los casos del README, incluidos los rechazos y los archivos dañados, y se
+  repitió la jornada varias veces revisando los estados y la carga.
 
 ## 5. Contribuciones
 

@@ -28,7 +28,10 @@ cada parte del sistema.
 Muestra por qué estados pasa un envío. Se eligió porque la mayoría de los rechazos dependen del estado.
 
 \subsection{Diagrama de secuencia}
-Por completar (Sebastian): jornada de reparto.
+\noindent\includegraphics[width=\textwidth]{uml/secuencia.png}
+
+Muestra la jornada de reparto: un hilo por repartidor y la revisión final. Se eligió porque es la parte donde
+varias cosas pasan al mismo tiempo.
 
 \section{Decisiones de diseño}
 
@@ -43,8 +46,8 @@ Herencia y clases abstractas & \texttt{Envio} y sus tipos, \texttt{Servicio}, \t
 Composición y agregación & \texttt{Envio} tiene su historial; \texttt{Repartidor} agrupa envíos & El historial no existe sin el envío; el envío sí existe sin repartidor \\ \hline
 Polimorfismo & \texttt{costo\_base}, \texttt{seguro}, \texttt{validar}, \texttt{aplicar} & La central cotiza sin preguntar el tipo de envío \\ \hline
 Excepciones & \texttt{excepciones.py} & El menú atrapa un solo error base y muestra el motivo \\ \hline
-Archivos & \texttt{leer\_csv}, \texttt{Almacen} & Cargar tarifas y conservar los datos; se escribe en un temporal para no dañar lo guardado \\ \hline
-Hilos & Candado de \texttt{Central}; jornada por completar (Sebastian) & Dos repartidores no modifican los datos al mismo tiempo \\ \hline
+Archivos & \texttt{leer\_csv}, \texttt{Almacen}, \texttt{reporte.py} & Cargar tarifas, importar envíos, hacer reportes y conservar los datos; se escribe en un temporal para no dañar lo guardado \\ \hline
+Hilos & \texttt{Ruta} y candado de \texttt{Central} & Los repartidores trabajan al mismo tiempo sin dañar los datos \\ \hline
 Patrones de diseño & \texttt{FabricaEnvios} (Factory), \texttt{Servicio} (Strategy), \texttt{cotizar} (Template Method), \texttt{Central} (Facade) & Crear el tipo correcto, cambiar el precio según el servicio y que el menú use una sola clase \\ \hline
 \end{tabular}
 \end{center}
@@ -59,6 +62,12 @@ Patrones de diseño & \texttt{FabricaEnvios} (Factory), \texttt{Servicio} (Strat
 \item Un envío necesita repartidor para salir a ruta. Si la entrega falla, se queda sin repartidor.
 \item Un envío que ya salió a ruta no se cancela aunque haya regresado al almacén.
 \item Un cambio no puede tener una fecha anterior al último cambio del envío.
+\item En la asignación automática van primero los express y después los más antiguos. Cada envío se le da al
+repartidor con menos envíos que todavía lo pueda cargar.
+\item Los ingresos del reporte son de los envíos registrados ese día, sin los cancelados ese mismo día.
+\item En la jornada cada intento tiene 10\,\% de probabilidad de fallar y se hace un intento por envío al día.
+\item Al importar, si el archivo no tiene las columnas completas no se registra ninguno.
+\item Se agregó una opción para recibir en el almacén todos los envíos registrados.
 \end{itemize}
 
 \section{Alternativas}
@@ -71,11 +80,11 @@ CSV harían falta varios archivos relacionados.
 
 \section{Uso de IA}
 \begin{itemize}
-\item Qué se pidió: a partir del enunciado, el código base, los datos de ejemplo, los diagramas y esta documentación.
 \item Qué se usó: la primera versión de los módulos de \texttt{modelos}, \texttt{archivos}, \texttt{central},
-\texttt{tarifario}, \texttt{fabrica}, \texttt{menu} y \texttt{main}.
+\texttt{tarifario}, \texttt{fabrica}, \texttt{menu} y \texttt{main}, y también de \texttt{importador}, \texttt{asignacion}, \texttt{reporte} y \texttt{jornada}.
 \item Qué se corrigió: por completar por el equipo.
-\item Cómo se verificó: se ejecutaron los casos del README, incluidos los rechazos y los archivos dañados.
+\item Cómo se verificó: se ejecutaron los casos del README, incluidos los rechazos y los archivos dañados, y se repitió
+la jornada varias veces revisando los estados y la carga.
 \end{itemize}
 
 \section{Contribuciones}

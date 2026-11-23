@@ -16,11 +16,12 @@
 \begin{tikzpicture}
 \node[clase] (menu) at (0,9.5) {\cl{Menu}{+central\\+almacen\\+carpeta\_reportes\\+opciones}{+ejecutar()}};
 \node[clase] (alm) at (-5,9.5) {\cl{Almacen}{+ruta}{+leer()\\+guardar(datos)\\+apartar\_danado()}};
-\node[clase] (cen) at (0,4) {\cl{Central}{\#candado\\-tarifario\\-envios\\-repartidores\\-ultima\_guia}{+cotizar(datos)\\+registrar(datos, fecha)\\+buscar(guia)\\+buscar\_repartidor(clave)\\+repartidor\_de(envio)\\+agregar\_repartidor(...)\\+cargar\_repartidores(ruta)\\+por\_asignar()\\+asignar(guia, clave)\\+cambiar\_estado(...)\\+intento\_fallido(guia, fecha)\\+a\_dict()\\+restaurar(datos)}};
+\node[clase] (cen) at (0,4) {\cl{Central}{\#candado\\-tarifario\\-envios\\-repartidores\\-ultima\_guia}{+cotizar(datos)\\+registrar(datos, fecha)\\+buscar(guia)\\+buscar\_repartidor(clave)\\+repartidor\_de(envio)\\+agregar\_repartidor(...)\\+cargar\_repartidores(ruta)\\+por\_asignar()\\+asignar(guia, clave)\\+cambiar\_estado(...)\\+recibir\_todos(fecha)\\+intento\_fallido(guia, fecha)\\+a\_dict()\\+restaurar(datos)}};
 \node[clase] (tar) at (-7.5,5.6) {\cl{Tarifario}{-tarifas\\-rangos}{+zona(cp)\\+tarifa(zona)}};
 \node[clase] (ta) at (-11,5.6) {\cl{Tarifa}{+sobre\\+kilo}{}};
 \node[clase] (fab) at (-7.5,2) {\cl{FabricaEnvios}{}{+crear(datos, zona)\\+restaurar(datos)}};
-\node[clase] (jor) at (7,9.5) {\cl{Jornada}{+central\\+inicio}{+simular()}};
+\node[clase] (jor) at (7,9.5) {\cl{Jornada}{+central\\+inicio\\+rutas}{+simular()\\+verificar()}};
+\node[clase] (rut) at (13,9.5) {\cl{Ruta (Thread)}{+central\\+repartidor\\+hora\\+envios\\+hechos\\+resultados\\+error}{+run()\\+avance()}};
 \node[clase] (rep) at (8,4) {\cl{Repartidor}{+clave\\+nombre\\+vehiculo\\-envios}{+carga\\+puede\_cargar(envio)\\+asignar(envio)\\+quitar(envio)\\+a\_dict()}};
 \node[clase] (veh) at (14,4) {\cl{Vehiculo}{+nombre\\+capacidad}{}};
 \node[clase] (mot) at (12.7,0.8) {\cl{Motocicleta}{capacidad = 20}{}};
@@ -39,6 +40,9 @@
 \draw[aso] (menu) -- (alm);
 \draw[dep] (menu) -- (jor);
 \draw[aso] (jor) -- (cen);
+\draw[comp] (jor) -- node[m,near end,above]{0..*} (rut);
+\draw[aso] (rut) -- (rep);
+\draw[aso] (rut.south west) -- (cen.35);
 \draw[aso] (cen.160) -- (tar.east);
 \draw[comp] (tar) -- node[m,near end,above]{3} (ta);
 \draw[dep] (cen.195) -- (fab.east);
