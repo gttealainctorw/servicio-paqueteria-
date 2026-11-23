@@ -70,7 +70,50 @@ varias cosas pasan al mismo tiempo.
 
 ## 5. Contribuciones
 
-- Martínez Aguilar Carlos Alain: por completar.
-- Gonzalez Morales Daniel Alejandro: por completar.
-- Garces Diaz Gustavo Osei: por completar.
-- Garcia Bizueto Sebastian: por completar.
+- Martínez Aguilar Carlos Alain:
+  - paqueteria/operacion/central.py:
+        clase Central, que funciona como fachada (Facade) del sistema.
+        Tiene los métodos para cotizar, registrar, buscar envíos y repartidores, asignar, cambiar estado,
+        registrar intentos fallidos y recibir en almacén todos los envíos registrados.
+        Valida que un envío tenga repartidor para salir a ruta.
+        Carga repartidores desde CSV.
+        Convierte los datos a diccionario para guardarlos (a_dict) y los recupera (restaurar), sin cambiar
+        nada si los datos están dañados. Implementó el decorador sincronizado y el candado RLock para que los hilos no dañen los datos.
+  - paqueteria/menu.py:
+    clase Menu. Las 13 opciones del menú de texto.
+    Captura de datos del envío, de la fecha y de los estados.
+    Guardado automático después de cada operación.
+    Manejo de errores con un solo ErrorPaqueteria, además de EOFError, KeyboardInterrupt y UnicodeDecodeError.
+  - README.md:
+    instalación, opciones de inicio, guía paso a paso para probar cada función (con los rechazos
+    esperados) y estructura del proyecto. docs/diseno.md y diseno.pdf: documento de diseño con la
+    descripción de los diagramas UML, las decisiones de diseño, las alternativas y la sección de uso de IA.
+    Diagramas UML (clases, secuencia y estados).
+    
+- Gonzalez Morales Daniel Alejandro:
+  - paqueteria/operacion/importador.py:
+    función importar_envios. Lee el CSV de un cliente empresarial con leer_csv y la lista de columnas esperadas (tipo, servicio, remitente,
+    destinatario, direccion, cp, peso, largo, ancho, alto, valor). Registra cada renglón válido mediante Central.registrar.
+    Rechaza renglones con columnas de más o con datos inválidos, y guarda el número de renglón y el motivo.
+    Regresa dos listas: los envíos registrados y los rechazados.
+    Si el archivo no tiene las columnas completas o no existe, no se registra ningún envío.
+    
+- Garces Diaz Gustavo Osei:
+  - paqueteria/operacion/asignacion.py:
+      función asignar_todos. Reparte automáticamente los envíos del almacén que no tienen repartidor.
+      Ordena primero los express y después los más antiguos. Da cada envío al repartidor con menos envíos que todavía pueda cargarlo, sin pasar
+      la capacidad del vehículo. Regresa los asignados y las guías que no cupieron.
+    
+  - paqueteria/operacion/reporte.py: reporte de un día.
+      Cuenta los envíos por estado al terminar el día (contar_estados).
+      Suma los ingresos por tipo y por servicio de los envíos registrados ese día, sin los cancelados el mismo día (sumar_ingresos).
+      Cuenta las entregas por repartidor (contar_entregas).
+      generar_reporte escribe el resultado en reportes/reporte_AAAA-MM-DD.txt y maneja los errores de escritura.
+    
+- Garcia Bizueto Sebastian:
+  - paqueteria/operacion/jornada.py:
+      simulación de una jornada de reparto con hilos. La clase Ruta (threading.Thread) es un hilo por repartidor. Saca sus envíos a ruta y los
+      entrega uno por uno con pausas y horas aleatorias. Cada intento tiene 10 % de probabilidad de fallar (PROBABILIDAD_FALLA), y el tercer fallo
+      devuelve el envío al remitente. La clase Jornada crea y arranca los hilos, muestra el avance mientras haya hilos vivos, espera con join()
+      y permite interrumpir con Ctrl+C sin perder las entregas. Verifica que la jornada no empiece antes del último cambio de cada envío.
+      verificar() compara lo que anotó cada hilo con el estado real de los envíos y regresa True o False.
