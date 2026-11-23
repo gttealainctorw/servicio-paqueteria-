@@ -14,7 +14,7 @@ Integrantes:
 Se necesita Python 3.9 o superior. No usa paquetes externos.
 
 ```
-git clone URL_DEL_REPOSITORIO
+git clone https://github.com/gttealainctorw/servicio-paqueteria.git
 cd servicio-paqueteria
 python -m paqueteria.main
 ```
