@@ -1,0 +1,8 @@
+desde,hasta,zona
+01000,16999,local
+42000,43999,regional
+50000,57999,regional
+62000,62999,regional
+72000,75999,regional
+90000,90999,regional
+01000,99999,nacional
