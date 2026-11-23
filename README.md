@@ -65,15 +65,19 @@ Se rechazan:
 - Intento fallido: `4`, `PQ000001`, `4`, `2026-11-23 12:00`. El envío regresa al almacén.
 - Se rechaza: `4`, `PQ000001`, `5`, `2026-11-23 13:00` (ya salió a ruta, no se cancela).
 - Se rechaza: `5`, `PQ000003`, `R1` (25 kg no caben en una motocicleta).
-- Todos (opción 6): por completar (Gustavo).
+- Todos: `6`. Asigna PQ000001 y PQ000003 sin pasar la capacidad.
 
 ### 5. Importar
 
-Por completar (Daniel).
+- Válidos: `7`, `datos/envios_empresa.csv`, `2026-11-23 14:00`. Registra 20.
+- Con errores: `7`, `datos/envios_errores.csv`, `2026-11-23 14:00`. Registra 2 y rechaza 13 con su motivo.
+- Se rechaza: `7`, `datos/envios_sin_columnas.csv`, `2026-11-23 14:00`.
+- Se rechaza: `7`, `no_existe.csv`, `2026-11-23 14:00`.
 
 ### 6. Reporte
 
-Por completar (Gustavo).
+- `8`, `2026-11-23`. Se guarda en `reportes/reporte_2026-11-23.txt`.
+- Se rechaza: `8`, `2026-13-01`.
 
 ### 7. Datos guardados
 
@@ -85,7 +89,14 @@ Por completar (Gustavo).
 
 ### 8. Simular jornada
 
-Por completar (Sebastian).
+Después de importar:
+
+- Recibir todos: `13`, `2026-11-23 18:00`.
+- Asignar todos: `6`.
+- Se rechaza: `9`, `2026-11-23 08:00` (antes del último cambio de los envíos).
+- Simular: `9`, `2026-11-24 08:00`. Muestra el avance y al final dice si los estados coinciden.
+- Ver las entregas: `8`, `2026-11-24`.
+- Los fallidos regresan al almacén: se pueden asignar con `6` y simular otro día.
 
 ## Estructura
 
