@@ -1,0 +1,16 @@
+tipo,servicio,remitente,destinatario,direccion,cp,peso,largo,ancho,alto,valor
+sobre,estandar,Papelería Luna,Rosa Peña,Av. Juárez 10,06000,0.2,,,,
+refrigerado,estandar,Papelería Luna,Tere Díaz,Cedro 11,11000,5,30,30,30,
+refrigerado,express,Papelería Luna,Tere Díaz,Cedro 11,97000,5,30,30,30,
+paquete,express,Papelería Luna,Elsa Vega,Morelos 7,5000,4,40,30,20,
+paquete,express,Papelería Luna,Elsa Vega,Morelos 7,50000,cuatro,40,30,20,
+caja,express,Papelería Luna,Elsa Vega,Morelos 7,50000,4,40,30,20,
+paquete,urgente,Papelería Luna,Elsa Vega,Morelos 7,50000,4,40,30,20,
+paquete,express,Papelería Luna,,Morelos 7,50000,4,40,30,20,
+fragil,express,Papelería Luna,Eva Luna,Mar 31,01000,1,15,15,15,
+paquete,estandar,Papelería Luna,Saúl Mora,Hidalgo 33,04510,2,-30,20,10,
+sobre,estandar,Papelería Luna,Rosa Peña,Av. Juárez 10,06000,3,,,,
+paquete,estandar,Papelería Luna,Saúl Mora,Hidalgo 33,04510,600,30,20,10,
+paquete,estandar,Papelería Luna,Saúl Mora
+paquete,estandar,Papelería Luna,Saúl Mora,Hidalgo 33,04510,2,30,20,10,,extra
+paquete,estandar,Papelería Luna,Saúl Mora,Hidalgo 33,04510,2,30,20,10,

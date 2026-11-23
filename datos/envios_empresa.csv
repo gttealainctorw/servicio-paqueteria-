@@ -1,0 +1,21 @@
+tipo,servicio,remitente,destinatario,direccion,cp,peso,largo,ancho,alto,valor
+sobre,estandar,Papelería Luna,Rosa Peña,Av. Juárez 10,06000,0.2,,,,
+sobre,express,Papelería Luna,Hugo Lara,Calle 5 No. 8,57000,0.3,,,,
+sobre,estandar,Papelería Luna,Nora Cruz,Reforma 120,97000,0.5,,,,
+paquete,estandar,Papelería Luna,Saúl Mora,Hidalgo 33,04510,2,30,20,10,
+paquete,express,Papelería Luna,Elsa Vega,Morelos 7,50000,4.5,40,30,20,
+paquete,estandar,Papelería Luna,Iván Ríos,Centro 14,64000,12,50,40,40,
+paquete,estandar,Papelería Luna,Olga Paz,Roble 9,72000,1.5,60,40,30,
+paquete,express,Papelería Luna,Raúl Soto,Pino 45,15000,8,30,30,30,
+fragil,estandar,Papelería Luna,Inés Gil,Sauce 21,03100,3,20,20,20,1500
+fragil,express,Papelería Luna,Beto Lugo,Encino 2,62000,2.5,25,25,25,800
+fragil,estandar,Papelería Luna,Lidia Rey,Olmo 78,44100,6,40,30,30,4200
+refrigerado,express,Papelería Luna,Tere Díaz,Cedro 11,11000,5,30,30,30,
+refrigerado,express,Papelería Luna,Paco Meza,Fresno 60,90000,3,25,20,20,
+paquete,estandar,Papelería Luna,Dora Rico,Norte 3,07000,30,60,60,50,
+paquete,estandar,Papelería Luna,Mario Sosa,Sur 18,43000,45,70,60,60,
+sobre,estandar,Papelería Luna,Alma Neri,Oriente 4,09000,0.1,,,,
+sobre,express,Papelería Luna,Luis Ponce,Poniente 6,16000,0.4,,,,
+paquete,estandar,Papelería Luna,Gina Mata,Lago 15,80000,7,35,35,35,
+paquete,express,Papelería Luna,Omar Ruiz,Río 27,75000,9,40,40,30,
+fragil,express,Papelería Luna,Eva Luna,Mar 31,01000,1,15,15,15,300
