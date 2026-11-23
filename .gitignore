@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.venv/
+guardado/
+reportes/
+*.aux
+*.log
+*.fls
+*.fdb_latexmk
+*.out
