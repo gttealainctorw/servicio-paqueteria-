@@ -1,14 +1,20 @@
 """Repartidores y sus vehículos."""
 
+from abc import ABC, abstractmethod
+
 from paqueteria.excepciones import CapacidadExcedida, DatoInvalido
 from paqueteria.validacion import leer_texto
 
 
-class Vehiculo:
+class Vehiculo(ABC):
     """Vehículo con una capacidad en kilogramos."""
 
     nombre = ""
-    capacidad = 0
+
+    @property
+    @abstractmethod
+    def capacidad(self):
+        """Kilogramos que puede cargar."""
 
 
 class Motocicleta(Vehiculo):
