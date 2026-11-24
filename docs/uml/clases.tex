@@ -23,7 +23,7 @@
 \node[clase] (jor) at (7,9.5) {\cl{Jornada}{+central\\+inicio\\+rutas}{+simular()\\+verificar()}};
 \node[clase] (rut) at (13,9.5) {\cl{Ruta (Thread)}{+central\\+repartidor\\+hora\\+envios\\+hechos\\+resultados\\+error}{+run()\\+avance()}};
 \node[clase] (rep) at (8,4) {\cl{Repartidor}{+clave\\+nombre\\+vehiculo\\-envios}{+carga\\+puede\_cargar(envio)\\+asignar(envio)\\+quitar(envio)\\+a\_dict()}};
-\node[clase] (veh) at (14,4) {\cl{Vehiculo}{+nombre\\+capacidad}{}};
+\node[clase] (veh) at (14,4) {\cl{\textit{Vehiculo} \{abstracta\}}{+nombre}{+\textit{capacidad}}};
 \node[clase] (mot) at (12.7,0.8) {\cl{Motocicleta}{capacidad = 20}{}};
 \node[clase] (cam) at (15.6,0.8) {\cl{Camioneta}{capacidad = 500}{}};
 \node[clase] (env) at (0,-4.3) {\cl{\textit{Envio} \{abstracta\}}{+tipo, +remitente, +destinatario\\+direccion, +cp, +peso\\+servicio, +zona, +guia, +costo\\-historial, -intentos}{+estado, +historial, +intentos, +fecha\_registro\\+\textit{costo\_base(tarifa)}\\+seguro()\\+validar()\\+cotizar(tarifa)\\+registrar(...)\\+cambiar\_estado(...)\\+intento\_fallido(...)\\+estado\_al(dia)\\+a\_dict(), +restaurar(datos)}};
@@ -62,5 +62,19 @@
 \draw[her] (paq.north) -- (env.south);
 \draw[her] (fra.north) -- (paq.south);
 \draw[her] (ref.north) -- (paq.south);
+\node[clase] (err) at (11,-7.2) {\cl{ErrorPaqueteria (Exception)}{}{}};
+\node[clase,anchor=west] (x0) at (12.2,-9.10) {\cl{DatoInvalido}{}{}};
+\node[clase,anchor=west] (x1) at (12.2,-10.50) {\cl{EnvioNoPermitido}{}{}};
+\node[clase,anchor=west] (x2) at (12.2,-11.90) {\cl{CambioNoValido}{}{}};
+\node[clase,anchor=west] (x3) at (12.2,-13.30) {\cl{CapacidadExcedida}{}{}};
+\node[clase,anchor=west] (x4) at (12.2,-14.70) {\cl{NoEncontrado}{}{}};
+\node[clase,anchor=west] (x5) at (12.2,-16.10) {\cl{ErrorArchivo}{}{}};
+\draw (11,-9.10) -- (x0.west);
+\draw (11,-10.50) -- (x1.west);
+\draw (11,-11.90) -- (x2.west);
+\draw (11,-13.30) -- (x3.west);
+\draw (11,-14.70) -- (x4.west);
+\draw (11,-16.10) -- (x5.west);
+\draw[her] (11,-16.10) -- (err.south);
 \end{tikzpicture}
 \end{document}
