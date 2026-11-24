@@ -70,7 +70,20 @@ varias cosas pasan al mismo tiempo.
 
 ## 5. Contribuciones
 
+Módulos que subió cada integrante. El origen de la primera versión está en «Uso de IA».
+
 - Martínez Aguilar Carlos Alain:
+  - paqueteria/modelos/:
+    envio.py (Envio y sus cuatro tipos), servicio.py (Estandar y Express), estado.py (estados, cambios permitidos
+    e historial) y repartidor.py (Repartidor y sus vehículos).
+  - paqueteria/archivos/:
+    lector_csv.py (lectura de CSV) y almacen.py (guardado en JSON).
+  - paqueteria/operacion/tarifario.py y fabrica.py:
+    zonas y tarifas, y creación de cada tipo de envío.
+  - paqueteria/main.py, excepciones.py y validacion.py:
+    inicio del programa, errores propios y revisión de datos.
+  - datos/:
+    tarifas, zonas, repartidores y los archivos con errores de cada uno.
   - paqueteria/operacion/central.py:
         clase Central, que funciona como fachada (Facade) del sistema.
         Tiene los métodos para cotizar, registrar, buscar envíos y repartidores, asignar, cambiar estado,
@@ -78,7 +91,7 @@ varias cosas pasan al mismo tiempo.
         Valida que un envío tenga repartidor para salir a ruta.
         Carga repartidores desde CSV.
         Convierte los datos a diccionario para guardarlos (a_dict) y los recupera (restaurar), sin cambiar
-        nada si los datos están dañados. Implementó el decorador sincronizado y el candado RLock para que los hilos no dañen los datos.
+        nada si los datos están dañados. Tiene el decorador sincronizado y el candado RLock para que los hilos no dañen los datos.
   - paqueteria/menu.py:
     clase Menu. Las 13 opciones del menú de texto.
     Captura de datos del envío, de la fecha y de los estados.
@@ -86,9 +99,9 @@ varias cosas pasan al mismo tiempo.
     Manejo de errores con un solo ErrorPaqueteria, además de EOFError, KeyboardInterrupt y UnicodeDecodeError.
   - README.md:
     instalación, opciones de inicio, guía paso a paso para probar cada función (con los rechazos
-    esperados) y estructura del proyecto. docs/diseno.md y diseno.pdf: documento de diseño con la
+    esperados) y estructura del proyecto. docs/diseno.md y diseno.tex: documento de diseño con la
     descripción de los diagramas UML, las decisiones de diseño, las alternativas y la sección de uso de IA.
-    Diagramas UML (clases, secuencia y estados).
+    Diagramas UML de clases y de estados.
     
 - Gonzalez Morales Daniel Alejandro:
   - paqueteria/operacion/importador.py:
@@ -98,6 +111,9 @@ varias cosas pasan al mismo tiempo.
     Regresa dos listas: los envíos registrados y los rechazados.
     Si el archivo no tiene las columnas completas o no existe, no se registra ningún envío.
     
+  - datos/:
+    envios_empresa.csv, envios_errores.csv y envios_sin_columnas.csv.
+
 - Garces Diaz Gustavo Osei:
   - paqueteria/operacion/asignacion.py:
       función asignar_todos. Reparte automáticamente los envíos del almacén que no tienen repartidor.
@@ -117,3 +133,5 @@ varias cosas pasan al mismo tiempo.
       devuelve el envío al remitente. La clase Jornada crea y arranca los hilos, muestra el avance mientras haya hilos vivos, espera con join()
       y permite interrumpir con Ctrl+C sin perder las entregas. Verifica que la jornada no empiece antes del último cambio de cada envío.
       verificar() compara lo que anotó cada hilo con el estado real de los envíos y regresa True o False.
+  - docs/uml/:
+      diagrama de secuencia.
