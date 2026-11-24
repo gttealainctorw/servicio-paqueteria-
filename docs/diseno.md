@@ -64,7 +64,7 @@ varias cosas pasan al mismo tiempo.
 - Qué se pidió: a partir del enunciado, el código base, los datos de ejemplo, y los diagramas.
 - Qué se usó: la primera versión de los módulos de `modelos`, `archivos`, `central`, `tarifario`, `fabrica`,
   `menu` y `main`, y también de `importador`, `asignacion`, `reporte` y `jornada`.
-- Qué se corrigió: por completar por el equipo.
+- Qué se corrigió: Con ayuda de la IA se quitó código sobrante, se hizo abstracta la clase Vehiculo y se agregaron las excepciones al diagrama de clases.
 - Cómo se verificó: se ejecutaron los casos del README, incluidos los rechazos y los archivos dañados, y se
   repitió la jornada varias veces revisando los estados y la carga.
 
