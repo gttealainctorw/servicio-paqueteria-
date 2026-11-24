@@ -1,9 +1,5 @@
 """Asignación automática de los envíos del almacén."""
 
-from paqueteria.excepciones import ErrorPaqueteria
-
-# Espacio de Gustavo
-
 
 def asignar_todos(central):
     """Reparte los envíos del almacén sin exceder la capacidad de los vehículos.
@@ -23,4 +19,3 @@ def asignar_todos(central):
         central.asignar(envio.guia, elegido.clave)
         asignados.append((envio.guia, elegido.clave))
     return asignados, sin_lugar
-    raise ErrorPaqueteria("pendiente: asignación automática")
